@@ -85,6 +85,9 @@ Configuration variables:
   The downside is that this option connects to the first network the ESP sees, even if that network is very far away and
   better ones are available.
 
+- **on_connect** (*Optional*, :ref:`Automation <automation>`): An action to be performed when a connection is established.
+- **on_disconnect** (*Optional*, :ref:`Automation <automation>`): An action to be performed when the connection is dropped.
+
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 
 Access Point Mode
@@ -256,6 +259,22 @@ Configuration variables:
 - **certificate** (*Optional*, string): Path to a PEM encoded certificate to use for EAP-TLS authentication.
 - **key** (*Optional*, string): Path to a PEM encoded private key matching ``certificate`` for EAP-TLS authentication.
   Optionally encrypted with ``password``.
+
+.. _wifi-on_connect_disconnect:
+
+``on_connect`` / ``on_disconnect`` Trigger
+------------------------------------------
+
+This trigger is activated when a WiFi connection is established or dropped.
+
+.. code-block:: yaml
+
+    wifi:
+      # ...
+      on_connect:
+        - switch.turn_on: switch1
+      on_disconnect:
+        - switch.turn_off: switch1
 
 .. _wifi-connected_condition:
 
